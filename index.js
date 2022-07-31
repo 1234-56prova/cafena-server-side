@@ -25,7 +25,7 @@ async function run() {
             const result = await coffeeCollection.findOne(query);
             res.send(result);
         })
-        
+
         app.get('/coffees', async (req, res) => {
             const query = {};
             const result = await coffeeCollection.find(query).toArray();
