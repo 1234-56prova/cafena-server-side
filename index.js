@@ -17,7 +17,7 @@ async function run() {
     try {
         await client.connect();
         const coffeeCollection = client.db('cafena').collection('coffees');
-
+        const cartCollection = client.db('cafena').collection('cart');
 
         app.get('/coffees/:id', async (req, res) => {
             const id = req.params.id;
@@ -31,6 +31,16 @@ async function run() {
             const result = await coffeeCollection.find(query).toArray();
             res.send(result);
         })
+
+        // cart 
+
+        app.post('/cart', async (req, res) => {
+            const cart = req.body;
+            const result = await cartCollection.insertOne(cart);
+            res.send(result);
+        });
+
+
     }
     finally {
         // await client.close();
