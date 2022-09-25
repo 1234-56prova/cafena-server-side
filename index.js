@@ -32,7 +32,7 @@ async function run() {
             res.send(result);
         })
 
-        // cart 
+        // cart apis
 
         app.post('/cart', async (req, res) => {
             const cart = req.body;
@@ -40,6 +40,11 @@ async function run() {
             res.send(result);
         });
 
+        app.get('/cart', async (req, res) => {
+            const query = {};
+            const result = await cartCollection.find(query).toArray();
+            res.send(result);
+        })
 
     }
     finally {
